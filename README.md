@@ -6,16 +6,8 @@ It writes `spec.cpp`, fills in strong test cases, and iterates `drive.sh` until 
 
 ## Install
 
-Clone the `tcframe-testgen/` folder into your Claude skills directory:
-
 ```bash
-git clone https://github.com/YOUR_USER/tcframe-testgen .claude/skills/tcframe-testgen
-```
-
-Or if your project uses `.agents/skills/` symlinked from `.claude/`:
-
-```bash
-git clone https://github.com/YOUR_USER/tcframe-testgen .agents/skills/tcframe-testgen
+npx skills add kevincornellius/tcframe-testgen --skill "tcframe-testgen"
 ```
 
 Claude picks it up automatically on next invocation.
