@@ -1,0 +1,63 @@
+{
+  "skill_name": "tcframe-testgen",
+  "evals": [
+    {
+      "id": 1,
+      "name": "stub-array-fill-testcases",
+      "prompt": "I have an array-sum problem at evals/fixtures/eval-1-stub-array/. The spec.cpp has the input/output format and constraints set up, but TestCases() is empty. solution.cpp is provided and correct. Fill in TestCases() with a strong set of test cases that covers edge cases properly, then run tcframe to confirm every case generates successfully. Modify only spec.cpp.",
+      "expected_output": "spec.cpp with 8+ CASE() calls covering: N=1, N=MAXN, all-same values, sorted/reverse, random. Running drive.sh in the package exits 0 with 'ALL OK'.",
+      "files": [
+        "evals/fixtures/eval-1-stub-array/spec.cpp",
+        "evals/fixtures/eval-1-stub-array/solution.cpp",
+        "evals/fixtures/eval-1-stub-array/statement.md"
+      ],
+      "assertions": [
+        {"id": "compiles", "text": "spec.cpp compiles via `tcframe build`"},
+        {"id": "generates", "text": "running ./runner exits 0 with no FAILED cases"},
+        {"id": "case_count", "text": "TestCases() contains at least 8 CASE() invocations"},
+        {"id": "covers_min_n", "text": "at least one case has N = 1"},
+        {"id": "covers_max_n", "text": "at least one case has N = MAXN (or equivalent literal 100000)"},
+        {"id": "covers_max_v", "text": "at least one case uses MAXV / 1000000000 as an element value"},
+        {"id": "has_structural", "text": "at least one non-random structural case (sorted, all-same, reverse, etc.) — not just rnd.nextInt"},
+        {"id": "has_random", "text": "at least one case uses rnd.nextInt for variety"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "fix-broken-spec",
+      "prompt": "The spec at evals/fixtures/eval-2-fix-broken/ is failing. solution.cpp is correct. Run tcframe, read the error, fix the bugs in spec.cpp, and iterate until generation passes. The solution is right — do not modify solution.cpp.",
+      "expected_output": "spec.cpp fixed so drive.sh exits 0. Specifically: BeforeTestCase() must clear A, and any generator producing out-of-range values must be tightened to stay within MAXV.",
+      "files": [
+        "evals/fixtures/eval-2-fix-broken/spec.cpp",
+        "evals/fixtures/eval-2-fix-broken/solution.cpp",
+        "evals/fixtures/eval-2-fix-broken/statement.md"
+      ],
+      "assertions": [
+        {"id": "generates", "text": "running ./runner exits 0 with no FAILED cases"},
+        {"id": "before_test_case", "text": "spec.cpp now defines BeforeTestCase() that clears A"},
+        {"id": "no_out_of_range_gen", "text": "no randomA call passes hi > MAXV (1000)"},
+        {"id": "solution_unmodified", "text": "solution.cpp was NOT modified"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "subtask-and-test-groups",
+      "prompt": "The problem at evals/fixtures/eval-3-subtask-design/ has 3 subtasks per the statement, but the spec uses a flat Constraints()/TestCases() layout. Refactor spec.cpp to use SubtaskX() with Points() and TestGroupX() with proper Subtasks({...}) assignments. Design test groups by the Venn-diagram rule (one group per closed region). Then run tcframe to confirm everything passes. solution.cpp is correct — do not modify it.",
+      "expected_output": "spec.cpp now has Subtask1/2/3 with Points(20/30/50), and TestGroup1/2/3 with Subtasks({1,2,3}), ({2,3}), ({3}) respectively (or another valid Venn-region split). drive.sh exits 0.",
+      "files": [
+        "evals/fixtures/eval-3-subtask-design/spec.cpp",
+        "evals/fixtures/eval-3-subtask-design/solution.cpp",
+        "evals/fixtures/eval-3-subtask-design/statement.md"
+      ],
+      "assertions": [
+        {"id": "generates", "text": "running ./runner exits 0 with no FAILED cases"},
+        {"id": "three_subtasks", "text": "spec.cpp defines Subtask1(), Subtask2(), Subtask3()"},
+        {"id": "points_sum_100", "text": "Points(20), Points(30), Points(50) (or equivalent — must sum to 100)"},
+        {"id": "test_groups_used", "text": "TestCases() is gone; TestGroup1/2/3 are used instead"},
+        {"id": "venn_correct", "text": "TestGroup assignments follow Venn rule — e.g. TestGroup3 (largest cases) has Subtasks({3}) and its cases violate Subtasks 1/2 constraints"},
+        {"id": "sample_has_subtasks_call", "text": "SampleTestCase1() begins with Subtasks({1, 2, 3})"},
+        {"id": "solution_unmodified", "text": "solution.cpp was NOT modified"}
+      ]
+    }
+  ]
+}

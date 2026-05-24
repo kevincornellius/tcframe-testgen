@@ -1,0 +1,21 @@
+[
+  {"query": "I have a spec.cpp with an empty TestCases() — can you fill it in with strong test cases and run tcframe?", "should_trigger": true},
+  {"query": "My tcframe runner keeps failing with 'Does not satisfy constraints' — help me fix it", "should_trigger": true},
+  {"query": "Write test cases for this competitive programming problem using tcframe. It has 3 subtasks.", "should_trigger": true},
+  {"query": "I need to generate testdata for an interactive problem with a communicator. Here is my spec.cpp.", "should_trigger": true},
+  {"query": "The problem has multiple test cases per file (ICPC style). How do I set up the spec?", "should_trigger": true},
+  {"query": "My spec.cpp uses TestCases() but the problem has subtasks — how do I migrate to TestGroup?", "should_trigger": true},
+  {"query": "Generate test cases for this graph problem. N up to 2e5, M up to 5e5, need trees, paths, star graphs.", "should_trigger": true},
+  {"query": "I'm getting 'Expected: <space> after variable' when running tcframe — what's wrong?", "should_trigger": true},
+  {"query": "Add a custom scorer to this problem — multiple valid outputs are accepted", "should_trigger": true},
+  {"query": "How do I install tcframe on WSL?", "should_trigger": true},
+  {"query": "Fix my spec.cpp — BeforeTestCase doesn't clear the vector so cases bleed into each other", "should_trigger": true},
+  {"query": "I need to design test groups using the Venn diagram rule for my subtask problem", "should_trigger": true},
+  {"query": "Write me a solution for this DP problem in C++", "should_trigger": false},
+  {"query": "Review this pull request", "should_trigger": false},
+  {"query": "Explain how segment trees work", "should_trigger": false},
+  {"query": "Help me debug this Python script that parses JSON", "should_trigger": false},
+  {"query": "Set up a React project with TypeScript", "should_trigger": false},
+  {"query": "Write unit tests for my Go HTTP handler", "should_trigger": false},
+  {"query": "Optimize this SQL query", "should_trigger": false}
+]
