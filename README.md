@@ -1,22 +1,31 @@
 # tcframe-testgen
 
-A skill for authoring and validating [tcframe](https://github.com/ia-toki/tcframe) competitive-programming problem packages.
+A Claude Code skill for authoring and validating [tcframe](https://github.com/ia-toki/tcframe) competitive-programming problem packages.
 
 It writes `spec.cpp`, fills in strong test cases, and iterates `drive.sh` until every case passes — handling batch, subtask, ICPC multi-case, interactive, and custom-scorer problems.
 
 ## Install
 
+Clone the `tcframe-testgen/` folder into your Claude skills directory:
+
+```bash
+git clone https://github.com/YOUR_USER/tcframe-testgen .claude/skills/tcframe-testgen
 ```
-# drag dist/tcframe-testgen.skill into Claude Code
-# or install via skills.sh once listed
+
+Or if your project uses `.agents/skills/` symlinked from `.claude/`:
+
+```bash
+git clone https://github.com/YOUR_USER/tcframe-testgen .agents/skills/tcframe-testgen
 ```
+
+Claude picks it up automatically on next invocation.
 
 ## Requirements
 
 | Requirement | Notes |
 |---|---|
 | `g++` with C++17 | `sudo apt-get install build-essential` |
-| tcframe | See [Installation](#installation) below |
+| tcframe | See [tcframe setup](#tcframe-setup) below |
 | WSL | Windows only — tcframe's wrapper is a bash script |
 
 ## What it does
@@ -33,13 +42,13 @@ It writes `spec.cpp`, fills in strong test cases, and iterates `drive.sh` until 
   - Custom scorer (`CustomScorer`)
 - Stops and asks if the solution's output looks wrong — never silently changes output format
 
-## Installation
+## tcframe setup
 
 ```bash
-# inside WSL
+# inside WSL (or Linux/macOS terminal)
 git clone https://github.com/ia-toki/tcframe.git ~/tcframe
-echo 'export TCFRAME_HOME=~/tcframe'                >> ~/.bashrc
-echo 'alias tcframe=$TCFRAME_HOME/scripts/tcframe'  >> ~/.bashrc
+echo 'export TCFRAME_HOME=~/tcframe'               >> ~/.bashrc
+echo 'alias tcframe=$TCFRAME_HOME/scripts/tcframe' >> ~/.bashrc
 source ~/.bashrc
 sudo apt-get install -y build-essential
 ```
@@ -60,7 +69,7 @@ tcframe-testgen/
 │   ├── patterns.md              # edge-case checklist per data structure
 │   └── helpers.md               # drop-in private helpers (arrays, trees, graphs, …)
 ├── assets/boilerplate/          # spec.cpp templates per problem type
-└── evals/                       # development evals (not shipped in .skill)
+└── evals/                       # development evals (kept for transparency, not user-facing)
     ├── evals.json
     ├── trigger-eval.json
     └── fixtures/                # stub problem packages for benchmarking
@@ -81,13 +90,6 @@ Or for fixing a broken spec:
 ```
 My tcframe runner keeps failing with 'Does not satisfy constraints'. Here
 is my spec.cpp. Fix it and iterate until drive.sh exits 0.
-```
-
-## Building from source
-
-```bash
-cd tcframe-skill-repo/.agents/skills/skill-creator   # or wherever skill-creator lives
-python -m scripts.package_skill ../../tcframe-testgen ../../dist
 ```
 
 ## License
