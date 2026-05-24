@@ -1,6 +1,6 @@
 # tcframe-testgen
 
-A Claude Code skill for authoring and validating [tcframe](https://github.com/ia-toki/tcframe) competitive-programming problem packages.
+A skill for authoring and validating [tcframe](https://github.com/ia-toki/tcframe) competitive-programming problem packages.
 
 It writes `spec.cpp`, fills in strong test cases, and iterates `drive.sh` until every case passes — handling batch, subtask, ICPC multi-case, interactive, and custom-scorer problems.
 
