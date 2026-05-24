@@ -1,6 +1,6 @@
 # tcframe-testgen
 
-A Claude Code skill for authoring and validating [tcframe](https://github.com/ia-toki/tcframe) competitive-programming problem packages.
+An agent skill for authoring and validating [tcframe](https://github.com/ia-toki/tcframe) competitive-programming problem packages.
 
 It writes `spec.cpp`, fills in strong test cases, and iterates `drive.sh` until every case passes — handling batch, subtask, ICPC multi-case, interactive, and custom-scorer problems.
 
@@ -10,7 +10,7 @@ It writes `spec.cpp`, fills in strong test cases, and iterates `drive.sh` until 
 npx skills add kevincornellius/tcframe-testgen --skill "tcframe-testgen"
 ```
 
-Claude picks it up automatically on next invocation.
+The agent picks it up automatically on next invocation.
 
 ## Requirements
 
@@ -60,16 +60,12 @@ tcframe-testgen/
 │   ├── syntax.md                # every tcframe macro, validator, lifecycle hook
 │   ├── patterns.md              # edge-case checklist per data structure
 │   └── helpers.md               # drop-in private helpers (arrays, trees, graphs, …)
-├── assets/boilerplate/          # spec.cpp templates per problem type
-└── evals/                       # development evals (kept for transparency, not user-facing)
-    ├── evals.json
-    ├── trigger-eval.json
-    └── fixtures/                # stub problem packages for benchmarking
+└── assets/boilerplate/          # spec.cpp templates per problem type
 ```
 
 ## Using the skill
 
-Point Claude at your problem package:
+Point your agent at your problem package:
 
 ```
 I have a batch problem at problems/my-problem/. spec.cpp has the format
