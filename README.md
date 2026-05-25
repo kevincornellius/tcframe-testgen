@@ -1,3 +1,5 @@
+[![skills.sh](https://skills.sh/b/kevincornellius/tcframe-testgen)](https://skills.sh/kevincornellius/tcframe-testgen)
+
 # tcframe-testgen
 
 An agent skill for authoring and validating [tcframe](https://github.com/ia-toki/tcframe) competitive-programming problem packages.
